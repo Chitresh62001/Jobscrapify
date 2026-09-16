@@ -9,7 +9,13 @@ import {
   UserCheck, 
   Sparkles,
   Search,
+<<<<<<< HEAD
   Building
+=======
+  Building,
+  Check,
+  XCircle
+>>>>>>> master
 } from "lucide-react";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
@@ -28,9 +34,20 @@ export default function App() {
         headers: { "ngrok-skip-browser-warning": "true" }
       });
       const data = await res.json();
+<<<<<<< HEAD
       setJobs(data.jobs || []);
       if (data.jobs && data.jobs.length > 0 && !selectedJob) {
         setSelectedJob(data.jobs[0]);
+=======
+      const fetchedJobs = data.jobs || [];
+      setJobs(fetchedJobs);
+      if (fetchedJobs.length > 0) {
+        setSelectedJob((prev) => {
+          if (!prev) return fetchedJobs[0];
+          const updated = fetchedJobs.find((j) => j.job_id === prev.job_id);
+          return updated || fetchedJobs[0];
+        });
+>>>>>>> master
       }
     } catch (err) {
       console.error("Failed to fetch jobs", err);
@@ -43,6 +60,33 @@ export default function App() {
     fetchJobs();
   }, []);
 
+<<<<<<< HEAD
+=======
+  const toggleStatus = async (job) => {
+    const newStatus = job.status === "APPLIED" ? "NOT_APPLIED" : "APPLIED";
+    try {
+      const res = await fetch(`${API_URL}/api/jobs/${job.job_id}/status`, {
+        method: "PATCH",
+        headers: { 
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "true"
+        },
+        body: JSON.stringify({ status: newStatus })
+      });
+      if (res.ok) {
+        setJobs((prevJobs) =>
+          prevJobs.map((j) => (j.job_id === job.job_id ? { ...j, status: newStatus } : j))
+        );
+        if (selectedJob?.job_id === job.job_id) {
+          setSelectedJob((prev) => ({ ...prev, status: newStatus }));
+        }
+      }
+    } catch (err) {
+      alert("Failed to update job status");
+    }
+  };
+
+>>>>>>> master
   const triggerScrape = async () => {
     setScraping(true);
     try {
@@ -71,6 +115,22 @@ export default function App() {
       j.company?.toLowerCase().includes(search.toLowerCase())
   );
 
+<<<<<<< HEAD
+=======
+  const getRecBadge = (rec) => {
+    switch (rec) {
+      case "HIGHLY_RECOMMENDED":
+        return <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-semibold">🔥 Highly Recommended</span>;
+      case "RECOMMENDED":
+        return <span className="px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 text-xs font-semibold">👍 Recommended</span>;
+      case "NOT_RECOMMENDED":
+        return <span className="px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/30 text-xs font-semibold">⚠️ Low Match</span>;
+      default:
+        return <span className="px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-semibold">🤔 Maybe</span>;
+    }
+  };
+
+>>>>>>> master
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
       {/* Navbar */}
@@ -125,28 +185,77 @@ export default function App() {
               </div>
             ) : (
               filteredJobs.map((job) => {
+<<<<<<< HEAD
                 const isSelected = selectedJob?.id === job.id;
                 return (
                   <div
                     key={job.id}
                     onClick={() => setSelectedJob(job)}
                     className={`p-4 rounded-xl border transition cursor-pointer ${
+=======
+                const isSelected = selectedJob?.job_id === job.job_id;
+                const isApplied = job.status === "APPLIED";
+                return (
+                  <div
+                    key={job.job_id || job.id}
+                    onClick={() => setSelectedJob(job)}
+                    className={`p-4 rounded-xl border transition cursor-pointer relative ${
+>>>>>>> master
                       isSelected
                         ? "bg-indigo-950/40 border-indigo-500/50 shadow-md"
                         : "bg-slate-900/60 border-slate-800/80 hover:bg-slate-900 hover:border-slate-700"
                     }`}
                   >
+<<<<<<< HEAD
                     <div className="flex justify-between items-start mb-1">
                       <h3 className="font-semibold text-sm text-slate-100 line-clamp-1">{job.job_title}</h3>
                     </div>
+=======
+                    <div className="flex justify-between items-start mb-1 pr-16">
+                      <h3 className="font-semibold text-sm text-slate-100 line-clamp-1">{job.job_title}</h3>
+                    </div>
+
+>>>>>>> master
                     <p className="text-xs text-slate-400 flex items-center mb-3">
                       <Building className="w-3 h-3 mr-1 text-slate-500" /> {job.company}
                     </p>
 
+<<<<<<< HEAD
                     <div className="flex items-center space-x-2 text-xs">
                       <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700/50 flex items-center">
                         <Clock className="w-3 h-3 mr-1 text-indigo-400" /> Gap Analysis Ready
                       </span>
+=======
+                    <div className="flex items-center justify-between text-xs">
+                      <div className="flex items-center space-x-2">
+                        <span className="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 font-bold border border-indigo-500/20">
+                          {job.match_score || 0}% Match
+                        </span>
+                        {isApplied ? (
+                          <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-medium border border-emerald-500/30">
+                            Applied
+                          </span>
+                        ) : (
+                          <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-400">
+                            Not Applied
+                          </span>
+                        )}
+                      </div>
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleStatus(job);
+                        }}
+                        className={`text-xs px-2.5 py-1 rounded-lg border font-medium transition ${
+                          isApplied 
+                            ? "bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700" 
+                            : "bg-emerald-600 hover:bg-emerald-500 text-white border-emerald-500"
+                        }`}
+                      >
+                        {isApplied ? "Mark Unapplied" : "Mark Applied"}
+                      </button>
+>>>>>>> master
                     </div>
                   </div>
                 );
@@ -163,6 +272,7 @@ export default function App() {
               {/* Header */}
               <div className="flex justify-between items-start border-b border-slate-800 pb-4">
                 <div>
+<<<<<<< HEAD
                   <h2 className="text-xl font-bold text-slate-100 mb-1">{selectedJob.job_title}</h2>
                   <p className="text-sm text-indigo-400 font-medium">{selectedJob.company}</p>
                 </div>
@@ -177,6 +287,65 @@ export default function App() {
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 )}
+=======
+                  <div className="flex items-center space-x-3 mb-1">
+                    <h2 className="text-xl font-bold text-slate-100">{selectedJob.job_title}</h2>
+                    {getRecBadge(selectedJob.apply_recommendation)}
+                  </div>
+                  <p className="text-sm text-indigo-400 font-medium">{selectedJob.company}</p>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => toggleStatus(selectedJob)}
+                    className={`flex items-center space-x-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border transition ${
+                      selectedJob.status === "APPLIED"
+                        ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/30"
+                        : "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700"
+                    }`}
+                  >
+                    {selectedJob.status === "APPLIED" ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>Applied</span>
+                      </>
+                    ) : (
+                      <>
+                        <XCircle className="w-3.5 h-3.5 text-slate-400" />
+                        <span>Not Applied</span>
+                      </>
+                    )}
+                  </button>
+
+                  {selectedJob.job_url && (
+                    <a
+                      href={selectedJob.job_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center space-x-1 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium rounded-lg shadow border border-indigo-500 transition"
+                    >
+                      <span>View Job</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* Compatibility Metric Score Bar */}
+              <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    Match Compatibility Score
+                  </span>
+                  <span className="text-lg font-bold text-indigo-400">{selectedJob.match_score || 0}%</span>
+                </div>
+                <div className="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                  <div 
+                    className="bg-gradient-to-r from-indigo-500 to-purple-500 h-full transition-all duration-500"
+                    style={{ width: `${selectedJob.match_score || 0}%` }}
+                  ></div>
+                </div>
+>>>>>>> master
               </div>
 
               {/* Experience Comparison Cards */}

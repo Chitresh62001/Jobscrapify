@@ -1,6 +1,33 @@
-.venv
-__pycache__
+# Python Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Python Cache & Logs
+__pycache__/
+*.py[cod]
+*$py.class
 *.log
-node_modules
-dist
+backend.log
+ngrok.log
+
+# Node & Frontend Dependencies & Builds
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.output/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+
+# OS & Editor Files
 .DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+Chitresh-Chopkar-Resume.pdf

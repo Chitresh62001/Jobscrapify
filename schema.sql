@@ -9,5 +9,8 @@ CREATE TABLE IF NOT EXISTS job_gap_analysis (
     experience_gap TEXT,
     missing_skills TEXT,
     overall_gap_summary TEXT,
+    match_score INT DEFAULT 0,
+    apply_recommendation VARCHAR(50) DEFAULT 'MAYBE',
+    status VARCHAR(50) DEFAULT 'NOT_APPLIED',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
