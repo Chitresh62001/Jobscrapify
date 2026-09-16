@@ -21,51 +21,139 @@ def read_resume(pdf_path):
     return "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
 
 # 2. Local AI Analysis via Ollama (100% Offline)
-def analyze_experience_and_skill_gap_local(resume_text, job_title, company, description, max_retries=2):
+def analyze_experience_and_skill_gap_local(
+    resume_text,
+    job_title,
+    company,
+    description,
+    max_retries=2
+):
     prompt = f"""
-You are an expert HR and resume reviewer. Compare the candidate's resume against the target job description.
+You are an expert HR and resume reviewer.
+
+Compare the candidate's resume against the target job description.
 
 CANDIDATE RESUME:
 {resume_text}
 
-JOB TITLE: {job_title}
-COMPANY: {company}
+JOB TITLE:
+{job_title}
+
+COMPANY:
+{company}
 
 JOB DESCRIPTION:
 {description}
 
-Respond ONLY with a valid raw JSON object. Do not include markdown formatting or extra text outside JSON. Use these exact keys:
+Respond ONLY with a valid JSON object.
+Do not use markdown.
+Do not use ```json.
+Do not include explanations before or after the JSON.
+
+Use exactly these keys:
+
 {{
-    "required_experience": "<Required years of experience/tech stack stated in job>",
-    "candidate_experience": "<Candidate's relevant experience level from resume>",
-    "experience_gap": "<Analysis of experience gap>",
-    "missing_skills": "<List/summary of missing technical skills>",
-    "match_score": <Integer from 0 to 100 representing overall compatibility match percentage>,
-    "apply_recommendation": "<Either 'HIGHLY_RECOMMENDED', 'RECOMMENDED', 'MAYBE', or 'NOT_RECOMMENDED'>",
-    "overall_gap_summary": "<Brief 2-3 sentence overview of gaps and recommendation>"
+    "required_experience": "Required years of experience/technology stack stated in job",
+    "candidate_experience": "2+ years",
+    "experience_gap": "Analysis of experience gap",
+    "missing_skills": "List/summary of missing technical skills",
+    "match_score": 50,
+    "apply_recommendation": "MAYBE",
+    "overall_gap_summary": "Brief 2-3 sentence overview of gaps and recommendation"
 }}
+
+Rules:
+- match_score must be an integer from 0 to 100.
+- apply_recommendation must be exactly one of:
+  HIGHLY_RECOMMENDED
+  RECOMMENDED
+  MAYBE
+  NOT_RECOMMENDED
 """
 
     payload = {
         "model": OLLAMA_MODEL,
         "prompt": prompt,
         "format": "json",
-        "stream": False
+        "stream": False,
+        "think": False,
+        "options": {
+            "temperature": 0,
+            "seed": 42
+        }
     }
 
     for attempt in range(1, max_retries + 1):
         try:
-            res = requests.post(OLLAMA_URL, json=payload, timeout=120)
-            if res.status_code == 200:
-                response_data = res.json()
-                raw_response = response_data.get("response", "")
+            res = requests.post(
+                OLLAMA_URL,
+                json=payload,
+                timeout=180
+            )
+
+            print(f"Ollama HTTP status: {res.status_code}")
+
+            if res.status_code != 200:
+                print(f"Ollama error: {res.text}")
+                continue
+
+            # Debug: see exactly what Ollama returned
+            response_data = res.json()
+
+            print("Ollama response keys:", response_data.keys())
+
+            raw_response = response_data.get("response", "")
+
+            if not raw_response:
+                print("ERROR: Ollama returned an empty 'response'")
+                print("Full Ollama response:")
+                print(json.dumps(response_data, indent=2))
+                continue
+
+            print("Raw AI response:")
+            print(raw_response)
+
+            # Parse JSON
+            try:
                 return json.loads(raw_response)
-            else:
-                print(f"Ollama returned HTTP status {res.status_code}: {res.text}")
+
+            except json.JSONDecodeError as json_error:
+                print(f"Invalid JSON returned by model: {json_error}")
+                print("Raw response:")
+                print(repr(raw_response))
+
+                # Try extracting JSON if model accidentally returned extra text
+                start = raw_response.find("{")
+                end = raw_response.rfind("}")
+
+                if start != -1 and end != -1 and end > start:
+                    json_part = raw_response[start:end + 1]
+
+                    try:
+                        return json.loads(json_part)
+                    except json.JSONDecodeError:
+                        pass
+
+        except requests.exceptions.Timeout:
+            print(
+                f"Attempt {attempt}/{max_retries}: "
+                "Ollama request timed out."
+            )
+
+        except requests.exceptions.ConnectionError as e:
+            print(
+                f"Attempt {attempt}/{max_retries}: "
+                f"Could not connect to Ollama: {e}"
+            )
+
         except Exception as e:
-            print(f"Attempt {attempt}/{max_retries} - Local AI analysis failed: {e}")
-            if attempt < max_retries:
-                time.sleep(3)
+            print(
+                f"Attempt {attempt}/{max_retries} - "
+                f"Local AI analysis failed: {e}"
+            )
+
+        if attempt < max_retries:
+            time.sleep(3)
 
     return None
 
@@ -74,8 +162,7 @@ print("Scraping jobs from LinkedIn...")
 jobs_df = scrape_jobs(
     site_name=["linkedin"],
     search_term="data engineer",
-    location="Remote",
-    results_wanted=5,
+    results_wanted=15,
     is_remote=True,
     easy_apply=True,
     linkedin_fetch_description=True
