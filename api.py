@@ -24,6 +24,9 @@ class ScrapeRequest(BaseModel):
     location: str = "Remote"
     results_wanted: int = 5
 
+class StatusUpdateRequest(BaseModel):
+    status: str  # 'APPLIED' or 'NOT_APPLIED'
+
 @app.get("/api/jobs")
 def get_jobs():
     try:
@@ -31,12 +34,29 @@ def get_jobs():
             result = conn.execute(text("""
                 SELECT id, job_id, job_title, company, job_url, 
                        required_experience, candidate_experience, experience_gap, 
-                       missing_skills, overall_gap_summary, created_at 
+                       missing_skills, match_score, apply_recommendation, status, overall_gap_summary, created_at 
                 FROM job_gap_analysis 
                 ORDER BY created_at DESC;
             """))
             rows = result.mappings().all()
             return {"jobs": [dict(r) for r in rows]}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.patch("/api/jobs/{job_id}/status")
+def update_job_status(job_id: str, request: StatusUpdateRequest):
+    if request.status not in ["APPLIED", "NOT_APPLIED"]:
+        raise HTTPException(status_code=400, detail="Status must be APPLIED or NOT_APPLIED")
+    
+    try:
+        with engine.begin() as conn:
+            result = conn.execute(
+                text("UPDATE job_gap_analysis SET status = :status WHERE job_id = :job_id"),
+                {"status": request.status, "job_id": job_id}
+            )
+            if result.rowcount == 0:
+                raise HTTPException(status_code=404, detail="Job not found")
+            return {"message": "Job status updated successfully", "job_id": job_id, "status": request.status}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
