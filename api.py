@@ -6,6 +6,10 @@ from sqlalchemy import create_engine, text
 from pydantic import BaseModel
 import subprocess
 
+# Hardcoded credentials — override with env vars in production
+APP_USERNAME = os.environ.get("APP_USERNAME", "chitresh")
+APP_PASSWORD = os.environ.get("APP_PASSWORD", "cctns@123")
+
 app = FastAPI(title="Job Scraper & Resume Gap API")
 
 # Enable CORS for Netlify / localhost / Ngrok
@@ -20,6 +24,10 @@ app.add_middleware(
 DB_URL = "postgresql://postgres:postgres@127.0.0.1:5432/job_db"
 engine = create_engine(DB_URL)
 
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
 class ScrapeRequest(BaseModel):
     search_term: str = "data engineer"
     location: str = "Remote"
@@ -27,6 +35,12 @@ class ScrapeRequest(BaseModel):
 
 class StatusUpdateRequest(BaseModel):
     status: str  # 'APPLIED' or 'NOT_APPLIED'
+
+@app.post("/api/login")
+def login(request: LoginRequest):
+    if request.username == APP_USERNAME and request.password == APP_PASSWORD:
+        return {"success": True, "message": "Login successful"}
+    raise HTTPException(status_code=401, detail="Invalid username or password")
 
 @app.get("/api/jobs")
 def get_jobs():
@@ -75,4 +89,4 @@ def health_check():
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, host="0.0.0.0",port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
