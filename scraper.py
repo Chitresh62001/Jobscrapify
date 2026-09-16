@@ -8,7 +8,7 @@ from google import genai
 from sqlalchemy import create_engine, text
 
 # --- Database Setup ---
-DB_URL = "postgresql://postgres:postgres@localhost:5432/job_db"
+DB_URL = "postgresql://postgres:postgres@127.0.0.1:5432/job_db"
 engine = create_engine(DB_URL)
 
 # 1. Extract Resume Text
