@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { 
-  Briefcase, 
-  ExternalLink, 
-  RefreshCw, 
-  CheckCircle2, 
-  AlertTriangle, 
-  Clock, 
-  UserCheck, 
+import {
+  Briefcase,
+  ExternalLink,
+  RefreshCw,
+  CheckCircle2,
+  AlertTriangle,
+  Clock,
+  UserCheck,
   Sparkles,
   Search,
-<<<<<<< HEAD
-  Building
-=======
   Building,
   Check,
   XCircle
->>>>>>> master
 } from "lucide-react";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
@@ -34,11 +30,6 @@ export default function App() {
         headers: { "ngrok-skip-browser-warning": "true" }
       });
       const data = await res.json();
-<<<<<<< HEAD
-      setJobs(data.jobs || []);
-      if (data.jobs && data.jobs.length > 0 && !selectedJob) {
-        setSelectedJob(data.jobs[0]);
-=======
       const fetchedJobs = data.jobs || [];
       setJobs(fetchedJobs);
       if (fetchedJobs.length > 0) {
@@ -47,7 +38,6 @@ export default function App() {
           const updated = fetchedJobs.find((j) => j.job_id === prev.job_id);
           return updated || fetchedJobs[0];
         });
->>>>>>> master
       }
     } catch (err) {
       console.error("Failed to fetch jobs", err);
@@ -60,14 +50,12 @@ export default function App() {
     fetchJobs();
   }, []);
 
-<<<<<<< HEAD
-=======
   const toggleStatus = async (job) => {
     const newStatus = job.status === "APPLIED" ? "NOT_APPLIED" : "APPLIED";
     try {
       const res = await fetch(`${API_URL}/api/jobs/${job.job_id}/status`, {
         method: "PATCH",
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
           "ngrok-skip-browser-warning": "true"
         },
@@ -86,15 +74,14 @@ export default function App() {
     }
   };
 
->>>>>>> master
   const triggerScrape = async () => {
     setScraping(true);
     try {
       await fetch(`${API_URL}/api/scrape`, {
         method: "POST",
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "true" 
+          "ngrok-skip-browser-warning": "true"
         },
         body: JSON.stringify({ search_term: "data engineer", location: "Remote", results_wanted: 5 })
       });
@@ -115,8 +102,6 @@ export default function App() {
       j.company?.toLowerCase().includes(search.toLowerCase())
   );
 
-<<<<<<< HEAD
-=======
   const getRecBadge = (rec) => {
     switch (rec) {
       case "HIGHLY_RECOMMENDED":
@@ -130,7 +115,6 @@ export default function App() {
     }
   };
 
->>>>>>> master
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
       {/* Navbar */}
@@ -160,7 +144,7 @@ export default function App() {
 
       {/* Main Container */}
       <div className="max-w-7xl mx-auto w-full px-4 py-6 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
+
         {/* Left Column: Job List */}
         <div className="lg:col-span-5 flex flex-col space-y-4">
           <div className="relative">
@@ -185,47 +169,31 @@ export default function App() {
               </div>
             ) : (
               filteredJobs.map((job) => {
-<<<<<<< HEAD
+
                 const isSelected = selectedJob?.id === job.id;
                 return (
                   <div
                     key={job.id}
                     onClick={() => setSelectedJob(job)}
-                    className={`p-4 rounded-xl border transition cursor-pointer ${
-=======
-                const isSelected = selectedJob?.job_id === job.job_id;
-                const isApplied = job.status === "APPLIED";
-                return (
-                  <div
-                    key={job.job_id || job.id}
-                    onClick={() => setSelectedJob(job)}
-                    className={`p-4 rounded-xl border transition cursor-pointer relative ${
->>>>>>> master
-                      isSelected
-                        ? "bg-indigo-950/40 border-indigo-500/50 shadow-md"
-                        : "bg-slate-900/60 border-slate-800/80 hover:bg-slate-900 hover:border-slate-700"
-                    }`}
+                    className={`p-4 rounded-xl border transition cursor-pointer ${isSelected
+                      ? "bg-indigo-950/40 border-indigo-500/50 shadow-md"
+                      : "bg-slate-900/60 border-slate-800/80 hover:bg-slate-900 hover:border-slate-700"
+                      }`}
                   >
-<<<<<<< HEAD
+
                     <div className="flex justify-between items-start mb-1">
                       <h3 className="font-semibold text-sm text-slate-100 line-clamp-1">{job.job_title}</h3>
                     </div>
-=======
+
                     <div className="flex justify-between items-start mb-1 pr-16">
                       <h3 className="font-semibold text-sm text-slate-100 line-clamp-1">{job.job_title}</h3>
                     </div>
 
->>>>>>> master
+
                     <p className="text-xs text-slate-400 flex items-center mb-3">
                       <Building className="w-3 h-3 mr-1 text-slate-500" /> {job.company}
                     </p>
 
-<<<<<<< HEAD
-                    <div className="flex items-center space-x-2 text-xs">
-                      <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700/50 flex items-center">
-                        <Clock className="w-3 h-3 mr-1 text-indigo-400" /> Gap Analysis Ready
-                      </span>
-=======
                     <div className="flex items-center justify-between text-xs">
                       <div className="flex items-center space-x-2">
                         <span className="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 font-bold border border-indigo-500/20">
@@ -247,168 +215,149 @@ export default function App() {
                           e.stopPropagation();
                           toggleStatus(job);
                         }}
-                        className={`text-xs px-2.5 py-1 rounded-lg border font-medium transition ${
-                          isApplied 
-                            ? "bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700" 
-                            : "bg-emerald-600 hover:bg-emerald-500 text-white border-emerald-500"
-                        }`}
+                        className={`text-xs px-2.5 py-1 rounded-lg border font-medium transition ${isApplied
+                          ? "bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700"
+                          : "bg-emerald-600 hover:bg-emerald-500 text-white border-emerald-500"
+                          }`}
                       >
                         {isApplied ? "Mark Unapplied" : "Mark Applied"}
                       </button>
->>>>>>> master
                     </div>
                   </div>
                 );
               })
             )}
-          </div>
-        </div>
+          </div >
+        </div >
 
         {/* Right Column: Selected Job Gap Analysis Detail */}
-        <div className="lg:col-span-7">
-          {selectedJob ? (
-            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6 space-y-6">
-              
-              {/* Header */}
-              <div className="flex justify-between items-start border-b border-slate-800 pb-4">
-                <div>
-<<<<<<< HEAD
-                  <h2 className="text-xl font-bold text-slate-100 mb-1">{selectedJob.job_title}</h2>
-                  <p className="text-sm text-indigo-400 font-medium">{selectedJob.company}</p>
-                </div>
-                {selectedJob.job_url && (
-                  <a
-                    href={selectedJob.job_url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center space-x-1 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 transition"
-                  >
-                    <span>View Job</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                )}
-=======
-                  <div className="flex items-center space-x-3 mb-1">
-                    <h2 className="text-xl font-bold text-slate-100">{selectedJob.job_title}</h2>
-                    {getRecBadge(selectedJob.apply_recommendation)}
+        < div className="lg:col-span-7" >
+          {
+            selectedJob ? (
+              <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6 space-y-6" >
+
+                {/* Header */}
+                < div className="flex justify-between items-start border-b border-slate-800 pb-4" >
+                  <div>
+                    <div className="flex items-center space-x-3 mb-1">
+                      <h2 className="text-xl font-bold text-slate-100">{selectedJob.job_title}</h2>
+                      {getRecBadge(selectedJob.apply_recommendation)}
+                    </div>
+                    <p className="text-sm text-indigo-400 font-medium">{selectedJob.company}</p>
                   </div>
-                  <p className="text-sm text-indigo-400 font-medium">{selectedJob.company}</p>
-                </div>
 
-                <div className="flex items-center space-x-2">
-                  <button
-                    onClick={() => toggleStatus(selectedJob)}
-                    className={`flex items-center space-x-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border transition ${
-                      selectedJob.status === "APPLIED"
-                        ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/30"
-                        : "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700"
-                    }`}
-                  >
-                    {selectedJob.status === "APPLIED" ? (
-                      <>
-                        <Check className="w-3.5 h-3.5 text-emerald-400" />
-                        <span>Applied</span>
-                      </>
-                    ) : (
-                      <>
-                        <XCircle className="w-3.5 h-3.5 text-slate-400" />
-                        <span>Not Applied</span>
-                      </>
-                    )}
-                  </button>
-
-                  {selectedJob.job_url && (
-                    <a
-                      href={selectedJob.job_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center space-x-1 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium rounded-lg shadow border border-indigo-500 transition"
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => toggleStatus(selectedJob)}
+                      className={`flex items-center space-x-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border transition ${selectedJob.status === "APPLIED"
+                          ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/30"
+                          : "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700"
+                        }`}
                     >
-                      <span>View Job</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  )}
-                </div>
-              </div>
+                      {selectedJob.status === "APPLIED" ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-400" />
+                          <span>Applied</span>
+                        </>
+                      ) : (
+                        <>
+                          <XCircle className="w-3.5 h-3.5 text-slate-400" />
+                          <span>Not Applied</span>
+                        </>
+                      )}
+                    </button>
 
-              {/* Compatibility Metric Score Bar */}
-              <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    Match Compatibility Score
-                  </span>
-                  <span className="text-lg font-bold text-indigo-400">{selectedJob.match_score || 0}%</span>
+                    {selectedJob.job_url && (
+                      <a
+                        href={selectedJob.job_url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center space-x-1 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium rounded-lg shadow border border-indigo-500 transition"
+                      >
+                        <span>View Job</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
                 </div>
-                <div className="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-                  <div 
-                    className="bg-gradient-to-r from-indigo-500 to-purple-500 h-full transition-all duration-500"
-                    style={{ width: `${selectedJob.match_score || 0}%` }}
-                  ></div>
-                </div>
->>>>>>> master
-              </div>
 
-              {/* Experience Comparison Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
-                  <span className="text-xs font-semibold uppercase text-slate-400 tracking-wider flex items-center mb-1">
-                    <Briefcase className="w-3.5 h-3.5 mr-1 text-amber-400" /> Required Experience
-                  </span>
-                  <p className="text-sm font-medium text-slate-200 mt-2">
-                    {selectedJob.required_experience || "Not explicitly specified"}
+                {/* Compatibility Metric Score Bar */}
+                <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                      Match Compatibility Score
+                    </span>
+                    <span className="text-lg font-bold text-indigo-400">{selectedJob.match_score || 0}%</span>
+                  </div>
+                  <div className="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                    <div
+                      className="bg-gradient-to-r from-indigo-500 to-purple-500 h-full transition-all duration-500"
+                      style={{ width: `${selectedJob.match_score || 0}%` }}
+                    ></div>
+                  </div>
+                </div >
+
+                {/* Experience Comparison Cards */}
+                < div className="grid grid-cols-1 md:grid-cols-2 gap-4" >
+                  <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                    <span className="text-xs font-semibold uppercase text-slate-400 tracking-wider flex items-center mb-1">
+                      <Briefcase className="w-3.5 h-3.5 mr-1 text-amber-400" /> Required Experience
+                    </span>
+                    <p className="text-sm font-medium text-slate-200 mt-2">
+                      {selectedJob.required_experience || "Not explicitly specified"}
+                    </p>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                    <span className="text-xs font-semibold uppercase text-slate-400 tracking-wider flex items-center mb-1">
+                      <UserCheck className="w-3.5 h-3.5 mr-1 text-emerald-400" /> Chitresh's Resume
+                    </span>
+                    <p className="text-sm font-medium text-slate-200 mt-2">
+                      {selectedJob.candidate_experience || "Analyzed from Chitresh-Chopkar-Resume.pdf"}
+                    </p>
+                  </div>
+                </div >
+
+                {/* Experience Gap */}
+                < div className="p-4 rounded-xl bg-amber-950/10 border border-amber-500/20" >
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-amber-400 flex items-center mb-2">
+                    <AlertTriangle className="w-4 h-4 mr-1.5" /> Experience Gap Analysis
+                  </h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    {selectedJob.experience_gap || "No major experience gap detected."}
                   </p>
-                </div>
+                </div >
 
-                <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
-                  <span className="text-xs font-semibold uppercase text-slate-400 tracking-wider flex items-center mb-1">
-                    <UserCheck className="w-3.5 h-3.5 mr-1 text-emerald-400" /> Chitresh's Resume
-                  </span>
-                  <p className="text-sm font-medium text-slate-200 mt-2">
-                    {selectedJob.candidate_experience || "Analyzed from Chitresh-Chopkar-Resume.pdf"}
+                {/* Missing Skills */}
+                < div className="p-4 rounded-xl bg-rose-950/10 border border-rose-500/20" >
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-rose-400 flex items-center mb-2">
+                    <AlertTriangle className="w-4 h-4 mr-1.5" /> Missing Tech Stack / Skills
+                  </h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    {selectedJob.missing_skills || "Skills match closely."}
                   </p>
-                </div>
+                </div >
+
+                {/* Overall Summary */}
+                < div className="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/20" >
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-indigo-400 flex items-center mb-2">
+                    <CheckCircle2 className="w-4 h-4 mr-1.5" /> AI Recommendation & Verdict
+                  </h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    {selectedJob.overall_gap_summary || "Good match."}
+                  </p>
+                </div >
+
+              </div >
+            ) : (
+              <div className="flex flex-col items-center justify-center h-full py-24 bg-slate-900/30 rounded-xl border border-slate-800 text-slate-500">
+                <Briefcase className="w-12 h-12 mb-3 text-slate-600" />
+                <p>Select a job from the list to view experience and skill gap analysis</p>
               </div>
+            )}
+        </div >
 
-              {/* Experience Gap */}
-              <div className="p-4 rounded-xl bg-amber-950/10 border border-amber-500/20">
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-amber-400 flex items-center mb-2">
-                  <AlertTriangle className="w-4 h-4 mr-1.5" /> Experience Gap Analysis
-                </h4>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  {selectedJob.experience_gap || "No major experience gap detected."}
-                </p>
-              </div>
-
-              {/* Missing Skills */}
-              <div className="p-4 rounded-xl bg-rose-950/10 border border-rose-500/20">
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-rose-400 flex items-center mb-2">
-                  <AlertTriangle className="w-4 h-4 mr-1.5" /> Missing Tech Stack / Skills
-                </h4>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  {selectedJob.missing_skills || "Skills match closely."}
-                </p>
-              </div>
-
-              {/* Overall Summary */}
-              <div className="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/20">
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-indigo-400 flex items-center mb-2">
-                  <CheckCircle2 className="w-4 h-4 mr-1.5" /> AI Recommendation & Verdict
-                </h4>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  {selectedJob.overall_gap_summary || "Good match."}
-                </p>
-              </div>
-
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center h-full py-24 bg-slate-900/30 rounded-xl border border-slate-800 text-slate-500">
-              <Briefcase className="w-12 h-12 mb-3 text-slate-600" />
-              <p>Select a job from the list to view experience and skill gap analysis</p>
-            </div>
-          )}
-        </div>
-
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }

@@ -1,4 +1,5 @@
 import os
+import uvicorn
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine, text
@@ -71,3 +72,7 @@ def trigger_scrape(request: ScrapeRequest, background_tasks: BackgroundTasks):
 @app.get("/api/health")
 def health_check():
     return {"status": "ok"}
+
+
+if __name__ == '__main__':
+    uvicorn.run(app, host="0.0.0.0",port=8000)
