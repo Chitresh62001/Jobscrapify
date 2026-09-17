@@ -12,8 +12,8 @@ DB_URL = "postgresql://postgres:postgres@127.0.0.1:5432/job_db"
 engine = create_engine(DB_URL)
 
 # Ollama local endpoint & default model
-OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://192.168.183.89:11434/api/generate")
-OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "qwen3.5:9b")
+OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434/api/generate")
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:14b")
 
 # 1. Extract Resume Text
 def read_resume(pdf_path):
@@ -76,7 +76,7 @@ Rules:
         "prompt": prompt,
         "format": "json",
         "stream": False,
-        "think": False,
+        "think": True,
         "options": {
             "temperature": 0,
             "seed": 42
@@ -160,11 +160,10 @@ Rules:
 # 3. Scrape Jobs
 print("Scraping jobs from LinkedIn...")
 jobs_df = scrape_jobs(
-    site_name=["linkedin"],
+    site_name=["linkedin","indeed"],
     search_term="data engineer",
     results_wanted=15,
     is_remote=True,
-    easy_apply=True,
     linkedin_fetch_description=True
 )
 

@@ -7,8 +7,8 @@ from pydantic import BaseModel
 import subprocess
 
 # Hardcoded credentials — override with env vars in production
-APP_USERNAME = os.environ.get("APP_USERNAME", "chitresh")
-APP_PASSWORD = os.environ.get("APP_PASSWORD", "cctns@123")
+APP_USERNAME = os.environ.get("APP_USERNAME", "user")
+APP_PASSWORD = os.environ.get("APP_PASSWORD", "pass@123")
 
 app = FastAPI(title="Job Scraper & Resume Gap API")
 
