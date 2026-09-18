@@ -13,7 +13,7 @@ engine = create_engine(DB_URL)
 
 # Ollama local endpoint & default model
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434/api/generate")
-OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:14b")
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "llama3.1")
 
 # 1. Extract Resume Text
 def read_resume(pdf_path):
@@ -27,56 +27,56 @@ def analyze_experience_and_skill_gap_local(
     company,
     description,
     max_retries=2
-):
+                ):
     prompt = f"""
-You are an expert HR and resume reviewer.
+    You are an expert HR and resume reviewer.
 
-Compare the candidate's resume against the target job description.
+    Compare the candidate's resume against the target job description.
 
-CANDIDATE RESUME:
-{resume_text}
+    CANDIDATE RESUME:
+    {resume_text}
 
-JOB TITLE:
-{job_title}
+    JOB TITLE:
+    {job_title}
 
-COMPANY:
-{company}
+    COMPANY:
+    {company}
 
-JOB DESCRIPTION:
-{description}
+    JOB DESCRIPTION:
+    {description}
 
-Respond ONLY with a valid JSON object.
-Do not use markdown.
-Do not use ```json.
-Do not include explanations before or after the JSON.
+    Respond ONLY with a valid JSON object.
+    Do not use markdown.
+    Do not use ```json.
+    Do not include explanations before or after the JSON.
 
-Use exactly these keys:
+    Use exactly these keys:
 
-{{
-    "required_experience": "Required years of experience/technology stack stated in job",
-    "candidate_experience": "2+ years",
-    "experience_gap": "Analysis of experience gap",
-    "missing_skills": "List/summary of missing technical skills",
-    "match_score": 50,
-    "apply_recommendation": "MAYBE",
-    "overall_gap_summary": "Brief 2-3 sentence overview of gaps and recommendation"
-}}
+    {{
+        "required_experience": "Required years of experience/technology stack stated in job",
+        "candidate_experience": "2+ years",
+        "experience_gap": "Analysis of experience gap",
+        "missing_skills": "List/summary of missing technical skills",
+        "match_score": 50,
+        "apply_recommendation": "MAYBE",
+        "overall_gap_summary": "Brief 2-3 sentence overview of gaps and recommendation"
+    }}
 
-Rules:
-- match_score must be an integer from 0 to 100.
-- apply_recommendation must be exactly one of:
-  HIGHLY_RECOMMENDED
-  RECOMMENDED
-  MAYBE
-  NOT_RECOMMENDED
-"""
+    Rules:
+    - match_score must be an integer from 0 to 100.
+    - apply_recommendation must be exactly one of:
+    HIGHLY_RECOMMENDED
+    RECOMMENDED
+    MAYBE
+    NOT_RECOMMENDED
+    """
 
     payload = {
         "model": OLLAMA_MODEL,
         "prompt": prompt,
         "format": "json",
         "stream": False,
-        "think": True,
+        "think": False,
         "options": {
             "temperature": 0,
             "seed": 42
@@ -158,7 +158,7 @@ Rules:
     return None
 
 # 3. Scrape Jobs
-print("Scraping jobs from LinkedIn...")
+print("Scraping jobs...")
 jobs_df = scrape_jobs(
     site_name=["linkedin","indeed"],
     search_term="data engineer",
@@ -221,6 +221,20 @@ with engine.begin() as conn:
                 "match_score": int(gap_data.get("match_score", 50)),
                 "apply_recommendation": gap_data.get("apply_recommendation", "MAYBE"),
                 "overall_gap_summary": gap_data.get("overall_gap_summary", "")
+            })
+        else:
+            conn.execute(insert_sql, {
+                "job_id": job_id,
+                "job_title": title,
+                "company": company,
+                "job_url": url,
+                "required_experience": '',
+                "candidate_experience":'2+',
+                "experience_gap": '',
+                "missing_skills": '',
+                "match_score": int(1),
+                "apply_recommendation": '',
+                "overall_gap_summary": description
             })
             existing_ids.add(job_id)
             existing_title_company.add((title.lower(), company.lower()))

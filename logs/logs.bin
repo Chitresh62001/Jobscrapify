@@ -1,0 +1,7 @@
+nohup: ignoring input
+INFO:     Will watch for changes in these directories: ['/home/chitresh/Desktop/bored/Jobscrapify']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [2131014] using StatReload
+INFO:     Started server process [2131056]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
