@@ -160,11 +160,10 @@ def analyze_experience_and_skill_gap_local(
 # 3. Scrape Jobs
 print("Scraping jobs...")
 jobs_df = scrape_jobs(
-    site_name=["linkedin","indeed"],
+    site_name=["indeed"],
     search_term="data engineer",
     results_wanted=15,
-    is_remote=True,
-    linkedin_fetch_description=True
+    is_remote=True
 )
 
 resume_text = read_resume("Chitresh-Chopkar-Resume.pdf")
