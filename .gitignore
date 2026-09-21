@@ -11,6 +11,14 @@ __pycache__/
 *.log
 backend.log
 ngrok.log
+logs/
+airflow/logs/
+
+# Airflow runtime files
+airflow/airflow-webserver.pid
+airflow/airflow-scheduler.pid
+airflow/*.pid
+airflow/*.log
 
 # Node & Frontend Dependencies & Builds
 node_modules/
