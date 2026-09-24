@@ -11,7 +11,7 @@ __pycache__/
 *.log
 backend.log
 ngrok.log
-logs/
+./logs/
 airflow/logs/
 
 # Airflow runtime files
