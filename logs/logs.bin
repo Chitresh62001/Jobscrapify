@@ -1,11 +1,436 @@
 nohup: ignoring input
-INFO:     Started server process [1992754]
+INFO:     Started server process [1963463]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     196.1.1.18:0 - "OPTIONS /api/jobs HTTP/1.1" 200 OK
-INFO:     196.1.1.18:0 - "GET /api/jobs HTTP/1.1" 200 OK
-INFO:     196.1.1.18:0 - "OPTIONS /api/scrape HTTP/1.1" 200 OK
-INFO:     196.1.1.18:0 - "POST /api/scrape HTTP/1.1" 200 OK
-INFO:     196.1.1.18:0 - "GET /api/jobs HTTP/1.1" 200 OK
-INFO:     196.1.1.18:0 - "GET /api/jobs HTTP/1.1" 200 OK
+INFO:     196.1.1.9:0 - "GET /api/jobs HTTP/1.1" 200 OK
+INFO:     196.1.1.9:0 - "OPTIONS /api/scrape HTTP/1.1" 200 OK
+INFO:     196.1.1.9:0 - "POST /api/scrape HTTP/1.1" 200 OK
+INFO:     196.1.1.9:0 - "GET /api/jobs HTTP/1.1" 200 OK
+2026-09-24 10:46:46,641 - INFO - JobSpy:Linkedin - finished scraping
+Scraping jobs...
+Processing jobs using local model (qwen3.5:9b)...
+
+Analyzing locally: Staff Data Analytics Engineer at CareerPlug...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "Staff level role requiring deep SQL, production pipeline ownership, data modeling, testing, and likely 5+ years of experience given the salary ($165k-$180k) and 'Senior-most technical seat' description.",
+    "candidate_experience": "2+ years (based on resume showing 2024 start date and recent graduation in 2023).",
+    "experience_gap": "Significant gap between candidate's 2 years of experience and the Staff level seniority required. The candidate lacks demonstrated experience in defining core business metrics, stewarding shared metrics, leading BI migrations, or acting as the sole data engineer setting architectural patterns for a larger organization.",
+    "missing_skills": "Deep SQL and relational data modeling expertise, experience with Ruby on Rails (mentioned as a plus), experience defining/governing shared metrics, experience with automated testing for data pipelines, and experience with proprietary BI platforms like Domo.",
+    "match_score": 35,
+    "apply_recommendation": "MAYBE",
+    "overall_gap_summary": "The candidate possesses strong foundational engineering skills in ETL, CDC, and Spark but lacks the seniority, leadership experience, and specific domain expertise (metrics governance, Rails integration) required for a Staff-level role. While the technical stack overlaps, the candidate is likely underqualified for the salary and responsibility level, making this a potential stretch role that would require significant mentorship or a different seniority expectation."
+}
+
+Analyzing locally: Data QA Engineer at nan...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "10+ years of experience in Data QA, ETL Testing, or Data Validation; Strong healthcare domain expertise (Claims, Payer, Provider, MRF); Advanced SQL; Cloud platforms (Databricks, Snowflake, Azure, AWS, GCP); Medallion Architecture; Healthcare standards (ICD-10, CPT, NPI, HL7, FHIR).",
+    "candidate_experience": "2+ years (implied by 2024 start date and recent education).",
+    "experience_gap": "The candidate has approximately 2 years of experience, whereas the job requires 10+ years. This is a critical gap in seniority and depth of domain knowledge.",
+    "missing_skills": "Healthcare domain expertise (Claims, Payer, Provider data), Medallion Architecture validation, specific healthcare standards (ICD-10, CPT, NPI, HL7, FHIR), and advanced Data QA/ETL Testing methodologies.",
+    "match_score": 20,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate lacks the required 10+ years of experience and has no demonstrated healthcare domain expertise or knowledge of specific medical standards like ICD-10 or HL7. While the candidate possesses strong technical skills in ETL and data pipelines, the fundamental lack of seniority and industry-specific knowledge makes them a poor fit for this specialized role."
+}
+
+Analyzing locally: Senior Data Engineer at Centex Technologies...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "Senior level with demonstrated experience in full stack application development (TypeScript, React, Node.js), API design, and containerization, plus specific DoD security clearances.",
+    "candidate_experience": "2+ years",
+    "experience_gap": "The candidate lacks the required US citizenship and active Secret clearance, which are mandatory requirements for this government contract position. Additionally, the candidate has no demonstrated experience in full stack application development (TypeScript, React, Node.js) or API design, focusing instead on backend data engineering.",
+    "missing_skills": ["US Citizenship", "Active Secret Clearance", "TypeScript", "React", "Node.js", "API Design", "Containerization", "DoD Security Standards (CUI, NIST, STIGs)"],
+    "match_score": 10,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate is not eligible for this role due to mandatory US citizenship and Secret clearance requirements which they do not possess. Furthermore, the job description explicitly requires full stack application development skills (TypeScript, React, Node.js) and API design, which are absent from the candidate's resume that focuses solely on data engineering."
+}
+
+Analyzing locally: Lead-Data Engineer at St. Jude Children's Research Hospital...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "5+ progressive years of IT experience including strong database design, data architecture, and data transform processes; Master's degree preferred; experience leading industrial tools for data lake, big data, or ETL; experience with data governance and regulatory requirements.",
+    "candidate_experience": "2+ years (Sep 2024 - Present as Project Engineer, 2019-2023 Education).",
+    "experience_gap": "The candidate has approximately 2 years of professional experience, whereas the role requires a minimum of 5+ years of progressive IT experience. Additionally, the candidate lacks a Master's degree which is preferred for this Lead role.",
+    "missing_skills": "Lack of demonstrated leadership/mentorship experience, data governance framework implementation, enterprise reporting tools (PowerBI/Tableau), Master Data Management, regulatory compliance knowledge (HIPAA/GDPR), and specific healthcare domain knowledge (Epic, OMOP/PCORnet).",
+    "match_score": 35,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate is significantly underqualified for a Lead Data Engineer role due to a lack of required experience (2 years vs 5+ required) and missing critical leadership, governance, and healthcare-specific skills. The resume demonstrates strong technical proficiency in ETL and big data tools but does not reflect the strategic, architectural, or mentorship capabilities expected at the Lead level."
+}
+
+Analyzing locally: Data Platform & Cloud Engineer, AI- Enabled Developer at Liberty company insurance brokers...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "6+ years of experience administering SQL Server or comparable platforms, plus hands-on Azure administration and AI-assisted development.",
+    "candidate_experience": "2+ years (Sep 2024 - Present as Project Engineer, plus 2019-2023 education)",
+    "experience_gap": "The candidate has approximately 2 years of professional experience, whereas the role requires 6+ years. The candidate lacks specific experience in Azure subscription administration, legacy system decommissioning, and enterprise-grade SQL Server tuning.",
+    "missing_skills": ["Microsoft Azure subscription administration (Entra ID, Cost Management, Policy)", "Legacy system decommissioning and archival", "AI coding assistants (Claude Code, GitHub Copilot) in production workflows", "Infrastructure-as-Code (Bicep, ARM, Terraform)", "Insurance/Brokerage domain knowledge", "Tableau/BI reporting tools"],
+    "match_score": 35,
+    "apply_recommendation": "MAYBE",
+    "overall_gap_summary": "The candidate possesses strong foundational skills in ETL, PySpark, and SQL Server but falls significantly short on the required 6+ years of experience and lacks critical cloud administration (Azure) and AI development workflow skills. While the technical stack overlaps in data processing, the specific operational and compliance requirements of the role (Azure management, legacy retirement) are not met, making the application a long shot unless the candidate can pivot their narrative to emphasize rapid upskilling in Azure and AI tools."
+}
+
+Analyzing locally: Data Engineer at Ford Motor Company...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "5+ years total experience, 3+ years in Python/Kotlin/Java, 3+ years with Google BigQuery, 3+ years building APIs, 3+ years with semantic layers (dbt/LookML), 2+ years in testing/monitoring, 2+ years with SQL.",
+    "candidate_experience": "2+ years",
+    "experience_gap": "The candidate has approximately 2 years of experience (Sep 2024 - Present + 2019-2023 education), whereas the role requires a minimum of 5 years total experience and 3+ years in specific technologies like Python, BigQuery, and API development.",
+    "missing_skills": "Google BigQuery (0 years vs 3+ required), Semantic Layer tools (dbt/LookML/Cube.js), API development frameworks (FastAPI/Flask/Node.js), Data Catalog tools (Google Data Catalog/Collibra), and specific languages Kotlin/Java.",
+    "match_score": 25,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate is significantly underqualified for this senior-level role, lacking the required 5 years of experience and having zero exposure to the mandatory Google BigQuery ecosystem, semantic layering tools, and API development frameworks. While the candidate possesses strong foundational skills in ETL, PySpark, and Kafka, the specific cloud platform (GCP) and architectural requirements (APIs, semantic layers) are completely absent from their profile."
+}
+
+Analyzing locally: Senior or Staff Software Engineer, Data Platform (Canada) at TRM Labs...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "5+ years of hands-on experience in architecting distributed systems and production deployment.",
+    "candidate_experience": "2+ years (Sep 2024 - Present as Project Engineer, plus 2019-2023 education)",
+    "experience_gap": "Candidate lacks the required 5+ years of professional experience; resume indicates less than 2 years of full-time work history.",
+    "missing_skills": "Missing specific cloud infrastructure tools (Terraform, Kubernetes, Datadog), advanced data stores (Iceberg, Trino, BigQuery, StarRocks, Citus), and DBT. Also lacks explicit mention of blockchain data processing experience.",
+    "match_score": 35,
+    "apply_recommendation": "MAYBE",
+    "overall_gap_summary": "The candidate possesses strong foundational skills in Python, Spark, Kafka, and Airflow but falls significantly short on the required 5+ years of experience and lacks specific cloud infrastructure and advanced data store technologies requested by TRM. While the technical stack overlaps heavily, the seniority level and specific tooling gaps make this a high-risk application unless the candidate can demonstrate exceptional adaptability and rapid learning capabilities in the interview."
+}
+
+Analyzing locally: (Remote) Senior Data & Business Intelligence Engineer at Harris Computer...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "5+ years of experience in Data Engineering, Analytics Engineering, or related discipline; proficiency in enterprise Data Lakes, ELT solutions, CDC (Debezium, Kafka), Spark, Flink, Iceberg, StarRocks, Prometheus, VictoriaMetrics, and Linux system administration.",
+    "candidate_experience": "2+ years (implied by current role start date of Sep 2024 and recent graduation in 2023; lacks the 5+ years explicitly required).",
+    "experience_gap": "The candidate has approximately 2 years of experience, falling significantly short of the 5+ years required. The candidate also lacks specific enterprise-scale experience with technologies like Apache Flink, Apache Iceberg, StarRocks, and advanced observability tools (Prometheus, VictoriaMetrics, Grafana).",
+    "missing_skills": "Apache Flink, Apache Iceberg, Nessie, StarRocks, Prometheus, VictoriaMetrics, Grafana, advanced Linux system administration (RHEL/CentOS), dimensional modeling, semantic-layer design, and enterprise reporting tools like Power BI.",
+    "match_score": 35,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate is a strong technical fit for the core ETL and streaming stack (Kafka, Spark, Debezium) but lacks the required 5+ years of experience and specific enterprise Data Lakehouse technologies (Iceberg, StarRocks, Flink). Additionally, the candidate is missing critical skills in observability (Prometheus) and Linux system administration, making them a poor fit for a Senior role requiring technical leadership and SRE practices."
+}
+
+Analyzing locally: Senior Data Engineer at BV Teck...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "6+ years of professional experience in enterprise data engineering, ETL pipelines, and cloud-based data platforms.",
+    "candidate_experience": "2+ years (based on 2024 start date and recent education)",
+    "experience_gap": "The candidate has approximately 2 years of experience, whereas the role requires 6+ years. This is a significant gap of 4+ years in professional production-grade experience.",
+    "missing_skills": "Lack of enterprise-scale experience, missing specific cloud platform depth (AWS/Azure/GCP managed services beyond basic S3), missing containerization/orchestration (Docker/Kubernetes), missing CI/CD/DevOps practices, and missing advanced data governance/MDM experience.",
+    "match_score": 25,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate is significantly underqualified for a Senior Data Engineer role requiring 6+ years of experience, possessing only about 2 years. Additionally, the resume lacks evidence of enterprise-grade cloud deployment, containerization, and advanced DevOps practices required by the job description."
+}
+
+Analyzing locally: Senior Data Engineer at Everforth ECS...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "10+ years of IT experience including design, analysis, and implementation of large-scale, complex data architectures",
+    "candidate_experience": "2+ years",
+    "experience_gap": "The candidate has approximately 2 years of experience (based on 2024 start date and 2019-2023 education), whereas the job requires 10+ years of IT experience. This is a critical disqualifying factor.",
+    "missing_skills": "US Citizenship (required for Public Trust Clearance), 10+ years of experience, Public Trust Clearance eligibility, and likely lack of federal/DHS domain knowledge.",
+    "match_score": 10,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate is significantly underqualified due to a lack of required experience (2 years vs. 10+ years required) and the mandatory US citizenship requirement. The technical skills in Python, SQL, and Spark are relevant, but the seniority and security clearance prerequisites make this role a poor fit."
+}
+
+Analyzing locally: Chief Data Engineer at CACI International...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "Bachelor's degree + 15 years of experience in data engineering, data architecture, software engineering, or related field; equivalencies considered (Master's + 12 years; 21 years with no degree; AA + 17 years)",
+    "candidate_experience": "2+ years (based on resume showing current role since Sep 2024 and graduation in 2023)",
+    "experience_gap": "The candidate has approximately 2 years of experience, whereas the role requires a minimum of 12 to 15 years of experience. This is a critical disqualifying factor.",
+    "missing_skills": "Azure ecosystem (Azure Data Factory, Databricks, Synapse), legacy ETL migration (Informatica), federal government security compliance (NIST 800-53, FedRAMP), and leadership experience managing teams.",
+    "match_score": 15,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate is significantly underqualified for the Chief Data Engineer role due to a massive experience gap (2 years vs. 15+ years required) and a lack of specific cloud leadership skills like Azure and Informatica. The role demands senior-level architectural and team leadership capabilities that the candidate's current profile does not demonstrate."
+}
+
+Analyzing locally: Staff Data Engineer, Observability Data Lake at CVS Health...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "7+ years total experience, 6+ years in pipelines/lakehouse, 5+ years in Databricks, 4+ years in batch/streaming, 2+ years in collaboration/governance.",
+    "candidate_experience": "2+ years (Sep 2024 - Present) with a PG Diploma completed in 2024. Total professional experience appears to be less than 2 years.",
+    "experience_gap": "The candidate has approximately 2 years of experience, whereas the role requires a minimum of 7 years of total experience and 5 years specifically with Databricks. The candidate lacks the seniority and depth of enterprise production experience required for a Staff-level position.",
+    "missing_skills": "Databricks, Delta Lake, Unity Catalog, Databricks Asset Bundles, OCSF framework, advanced observability/security data ingestion, CI/CD for data platforms (Databricks Asset Bundles/GitHub Actions).",
+    "match_score": 15,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate is significantly underqualified for this Staff-level role due to a lack of required years of experience and zero exposure to the specific Databricks ecosystem (Delta Lake, Unity Catalog) mandated by the job description. The candidate's profile is suitable for a Junior or Mid-level Data Engineer role, not a Staff position requiring 7+ years of enterprise experience."
+}
+
+Analyzing locally: Oracle / Informatica Data Warehouse Engineer at Otoe Missouria Group...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "Senior level experience with Oracle database development, PL/SQL, Informatica ETL, and U.S. Federal Government programs (IRS) required.",
+    "candidate_experience": "2+ years",
+    "experience_gap": "The candidate lacks specific experience with Oracle databases and PL/SQL, Informatica ETL tools, and the mandatory U.S. Federal Government/IRS background investigation requirements.",
+    "missing_skills": ["Oracle Database", "PL/SQL", "Informatica", "U.S. Federal Government Experience", "IRS Eligibility"],
+    "match_score": 15,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate's profile is heavily focused on the Hadoop ecosystem (Spark, Kafka, HDFS) and PostgreSQL, whereas the role strictly requires Oracle and Informatica expertise. Additionally, the job mandates U.S. citizenship or specific residency status for a federal government contract, which the candidate's profile does not indicate, creating a critical eligibility barrier."
+}
+
+Analyzing locally: Senior Engineer Software (Data Insights) at Paylocity...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "Minimum 5 years of software engineering experience; proficiency in C#, SQL, or similar OOP languages; experience with Snowflake, MongoDB, and on-prem environments.",
+    "candidate_experience": "2+ years (implied by 2024 start date and recent graduation)",
+    "experience_gap": "Candidate has approximately 2 years of experience, falling significantly short of the 5-year minimum requirement. The candidate's background is heavily focused on Big Data tools (Spark, Kafka, Hadoop) rather than the general software engineering and platform development (C#, .NET) emphasized in the job description.",
+    "missing_skills": "C#, .NET framework, Snowflake, MongoDB, general software engineering lifecycle (beyond just data pipelines), and platform development experience.",
+    "match_score": 35,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate lacks the required 5 years of experience and the specific C#/.NET software engineering skills needed for this Senior Engineer role. While the candidate possesses strong data engineering skills in Python and Spark, these do not align with the platform development and general software engineering focus of the Paylocity position, making them a poor fit for this specific senior-level opening."
+}
+
+Analyzing locally: Senior Data Analyst Engineer - Snowflake Expert at TKC Holdings...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "7+ years total experience, 3+ years Snowflake, 3+ years Power BI",
+    "candidate_experience": "2+ years",
+    "experience_gap": "The candidate has approximately 2 years of experience (2024-Present), whereas the role requires 7+ years total and 3+ years specifically in Snowflake and Power BI.",
+    "missing_skills": "Snowflake, Power BI, Business Analysis/Requirements Gathering, Dimensional Modeling, ELT/ETL in Snowflake context",
+    "match_score": 20,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate lacks the mandatory 7+ years of experience and has zero demonstrated experience with the required Snowflake and Power BI technologies. While the candidate possesses strong foundational data engineering skills in Python, SQL, and Spark, the specific domain expertise and seniority level required for this role are not met."
+}
+
+Analyzing locally: Data Engineer I at The Larry H. Miller Company...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "Zero to two years of experience; Strong foundation in SQL, Python, ETL/ELT, Git, and relational databases.",
+    "candidate_experience": "2+ years",
+    "experience_gap": "Candidate exceeds the required experience level (0-2 years) with 2+ years, which is a positive factor for an entry-level role.",
+    "missing_skills": "Snowflake (critical), dbt, AWS services (Lambda, Glue, Secrets Manager), Power BI, CI/CD/Docker, and specific domain knowledge (financial/healthcare data).",
+    "match_score": 65,
+    "apply_recommendation": "MAYBE",
+    "overall_gap_summary": "The candidate possesses strong foundational skills in Python, SQL, and ETL pipelines but lacks specific experience with Snowflake, dbt, and AWS services required by the job description. While the candidate's experience level is appropriate, the absence of the primary data warehouse platform (Snowflake) and orchestration tools (dbt) makes them a partial fit, suggesting they should apply only if they can demonstrate rapid learning potential or transferable cloud skills."
+}
+
+Analyzing locally: Data Engineer at Mizuho...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "0-2 years of experience; foundational SQL, Python, Git; willingness to learn Databricks/Spark/Cloud",
+    "candidate_experience": "2+ years (implied by 'Project Engineer' title and 4-year degree + PG Diploma, though specific job duration is short)",
+    "experience_gap": "Candidate has relevant project experience but lacks explicit mention of the specific 'DEAL' project context or Databricks Lakehouse environment; however, the candidate's skill set aligns well with the 0-2 year entry-level requirement.",
+    "missing_skills": "Explicit mention of Databricks, Delta Lake, Medallion Architecture (Bronze/Silver/Gold), and Azure Cloud (candidate has AWS and Linux experience but not Azure); lack of specific mention of 'DEAL' project or Data Mesh concepts.",
+    "match_score": 85,
+    "apply_recommendation": "RECOMMENDED",
+    "overall_gap_summary": "The candidate possesses strong foundational skills in Python, SQL, PySpark, and ETL pipelines that directly match the core requirements of the role. The primary gaps are the lack of specific Azure/Databricks experience and familiarity with the Data Mesh/Medallion architecture, but these are listed as 'nice-to-have' or learning opportunities in the job description. Given the candidate's strong academic background and relevant project portfolio, they are a strong fit for an entry-level or junior role where these specific technologies can be learned on the job."
+}
+
+Analyzing locally: Sr. Data Engineer at Accenture Federal Services...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "5+ years designing and implementing robust data pipelines, optimizing data infrastructure, and enhancing data feeds",
+    "candidate_experience": "2+ years",
+    "experience_gap": "The candidate has approximately 2 years of experience (2024-Present + 2019-2023), whereas the role explicitly requires 5+ years of experience.",
+    "missing_skills": "Databricks (critical requirement), Medallion Data Architecture, US Citizenship (legal requirement), Public Trust clearance eligibility.",
+    "match_score": 35,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate lacks the required 5+ years of experience and the critical Databricks platform expertise, alongside the mandatory US citizenship requirement. While the candidate possesses strong foundational skills in ETL, Kafka, and PySpark, the significant experience deficit and missing specific platform knowledge make them a poor fit for this Senior-level government role."
+}
+
+Analyzing locally: Data Engineer at Medical Mutual...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "Bachelor's degree required; Data Engineer I requires basic understanding and familiarity with cloud tech (RedShift, SnowFlake, DataBricks, Azure Synapse, BigQuery) and ETL/ELT; Data Engineer II requires 2+ years experience; Data Engineer III requires 4+ years experience.",
+    "candidate_experience": "2+ years",
+    "experience_gap": "Candidate has 2+ years of experience which aligns with Data Engineer I or II requirements, but lacks specific industry experience in healthcare/medical data.",
+    "missing_skills": "Specific cloud platforms listed in JD (RedShift, SnowFlake, DataBricks, Azure Synapse, BigQuery) are not explicitly mentioned in candidate's resume (candidate lists AWS S3, Hadoop, HDFS); lack of explicit mention of data modeling theory or specific data warehouse design experience.",
+    "match_score": 65,
+    "apply_recommendation": "MAYBE",
+    "overall_gap_summary": "The candidate possesses strong foundational skills in Python, SQL, and ETL/ELT pipelines using PySpark and Kafka, matching the core technical requirements. However, the resume lacks explicit experience with the specific cloud data warehouse technologies (Snowflake, Redshift, etc.) listed in the qualifications and does not highlight healthcare domain knowledge, which is a significant factor for a medical company role."
+}
+
+Analyzing locally: Data Engineer II, Data Engineer,Data Center Capacity Delivery at Amazon Web Services (AWS)...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "3+ years of data engineering experience, proficiency in AWS technologies (Redshift, S3, Glue, EMR, Kinesis), distributed systems (Spark, Kafka), and modern scripting (Python).",
+    "candidate_experience": "2+ years",
+    "experience_gap": "The candidate has approximately 2 years of experience (Sep 2024 - Present + prior roles implied by degree), falling short of the 3+ years requirement. Additionally, the candidate lacks specific AWS cloud experience, relying instead on on-premise or VM-based environments (Hadoop, YARN, HDFS).",
+    "missing_skills": "AWS ecosystem (Redshift, S3, Glue, EMR, Kinesis, Lambda, IAM), Serverless architecture, Cloud-based CI/CD pipelines, and specific AWS data lake technologies (Iceberg).",
+    "match_score": 45,
+    "apply_recommendation": "MAYBE",
+    "overall_gap_summary": "The candidate possesses strong foundational skills in Python, SQL, Spark, and Kafka but lacks the required 3+ years of experience and has no demonstrated experience with AWS cloud services or serverless architectures. While the technical stack overlaps significantly in terms of data processing concepts, the specific cloud environment and tenure requirements create a significant gap that makes the candidate a partial fit rather than a strong match."
+}
+
+Analyzing locally: Data Engineer I, Business Data Technologies at Amazon...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "1+ years of data engineering experience with SQL, Python, Spark, and ETL/ELT processes.",
+    "candidate_experience": "2+ years",
+    "experience_gap": "The candidate meets the minimum experience requirement, though the resume lists a specific project role starting in Sep 2024 which may suggest limited full-time industry tenure; however, the academic projects and internship duration likely satisfy the 1+ year threshold.",
+    "missing_skills": "AWS Redshift (explicitly required), Informatica/ODI/SSIS (preferred ETL tools), and specific experience with Amazon's managed data lake solutions (EMR, Glue, Lake Formation).",
+    "match_score": 75,
+    "apply_recommendation": "RECOMMENDED",
+    "overall_gap_summary": "The candidate possesses strong foundational skills in Python, SQL, Spark, and ETL pipelines that align well with the core responsibilities. The primary gaps are the lack of specific AWS Redshift experience and familiarity with Amazon's preferred ETL tools, but these can be addressed during the interview process given the candidate's robust open-source stack."
+}
+
+Analyzing locally: Databricks Engineer | Data Engineer II - Top Secret Clearance at Deloitte...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "2+ years in data engineering/SQL, 2+ years in Python/PySpark, 1+ years in Databricks/cloud platforms",
+    "candidate_experience": "2+ years",
+    "experience_gap": "The candidate's resume indicates a start date of September 2024 for their current role, suggesting less than 2 years of total professional experience in the specific domain required, despite the header stating '2+ years' which may be inaccurate based on the provided dates.",
+    "missing_skills": "Databricks, Delta Lake, Bronze/Silver/Gold table architecture, AWS cloud platform experience (candidate has S3 but lacks broader cloud context), Top Secret Security Clearance",
+    "match_score": 35,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate lacks the mandatory Top Secret clearance and has insufficient demonstrated experience with Databricks and cloud-based data platforms as required by the job description. Additionally, the resume timeline suggests less than the required 2 years of experience in the specific technologies, making the candidate ineligible for this specific role."
+}
+
+Analyzing locally: Databricks Engineer | Data Engineer II - Top Secret Clearance at Deloitte...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "2+ years in data engineering/SQL, 2+ years in Python/PySpark, 1+ years in Databricks/cloud platforms",
+    "candidate_experience": "2+ years",
+    "experience_gap": "The candidate's resume indicates a start date of September 2024 for their current role, suggesting less than 2 years of total professional experience in the specific domain required, despite the header stating '2+ years' which may be inaccurate based on the provided dates.",
+    "missing_skills": "Databricks, Delta Lake, Bronze/Silver/Gold table architecture, AWS cloud platform experience (candidate has S3 but lacks broader cloud context), Top Secret Security Clearance",
+    "match_score": 35,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "The candidate lacks the mandatory Top Secret clearance and has insufficient demonstrated experience with Databricks and cloud-based data platforms as required by the job description. Additionally, the resume timeline suggests less than the required 2 years of experience in the specific technologies, making the candidate ineligible for this specific role."
+}
+
+Analyzing locally: Data Engineer, Amazon Fuse at Amazon...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "1+ years of data engineering experience with SQL, Python, and big data technologies (Hadoop, Spark, AWS).",
+    "candidate_experience": "2+ years",
+    "experience_gap": "The candidate meets the minimum experience requirement, though the resume lists a specific project role starting in Sep 2024, suggesting the bulk of experience may be academic or recent project-based rather than full-time industry tenure.",
+    "missing_skills": "Lack of explicit mention of AWS EMR, Hive, or commercial ETL tools (Informatica, SSIS) listed in preferred qualifications; no demonstrated experience using AI tools (coding assistants, generative AI) for pipeline development as required by the job description.",
+    "match_score": 65,
+    "apply_recommendation": "MAYBE",
+    "overall_gap_summary": "The candidate possesses strong technical fundamentals in Python, SQL, and Spark but lacks specific AWS cloud experience (EMR) and the required proficiency in using AI tools to accelerate development. The resume also does not explicitly highlight the 'data-curious' analytical mindset or stakeholder communication skills emphasized in the job description, making the application a potential fit contingent on interview performance regarding soft skills and AI adoption."
+}
+
+Analyzing locally: Senior Healthcare Data Engineer at Jobot...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "5+ years of experience in Data Engineering, Analytics Engineering, Data Science, or Data Quality Engineering.",
+    "candidate_experience": "2+ years (implied by 2024 start date and recent graduation)",
+    "experience_gap": "The candidate has approximately 2 years of experience (2024-Present), whereas the role explicitly requires 5+ years. This is a significant gap in seniority and depth of experience.",
+    "missing_skills": "Healthcare domain knowledge (EHR, EMR, FHIR, HIPAA), specific cloud platform experience (Snowflake), and lack of demonstrated experience with complex healthcare data quality issues.",
+    "match_score": 35,
+    "apply_recommendation": "MAYBE",
+    "overall_gap_summary": "The candidate lacks the required 5+ years of experience and has no specific healthcare data background, which are critical for this senior role. While the technical stack (Python, SQL, ETL) is relevant, the absence of domain expertise and seniority makes the candidate a poor fit for the 'Senior' title without significant upskilling or a willingness to accept a junior-level position."
+}
+
+Analyzing locally: Senior Data Engineer, DX at Atlassian...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "The job description implies a Senior role requiring strong SQL, Postgres expertise, ETL/ELT pipeline maintenance, and self-documentation habits. It does not explicitly state a minimum number of years but expects 'individual mastery' and experience with SaaS/telemetry data.",
+    "candidate_experience": "2+ years",
+    "experience_gap": "The candidate has 2+ years of experience (Sep 2024 - Present + 2019-2023 education), which is likely insufficient for a 'Senior' Data Engineer role at a major tech company like Atlassian, which typically requires 5-8+ years of experience. The candidate's current role is also listed as 'Project Engineer' rather than Senior.",
+    "missing_skills": "Lack of specific SaaS product data, telemetry, or event-driven data experience. Missing familiarity with developer tooling data (Git/GitHub activity, CI/CD metrics, Jira data). Lack of explicit mention of complex data modeling for analytical workloads or specific benchmarking methodologies (DORA, SPACE).",
+    "match_score": 45,
+    "apply_recommendation": "MAYBE",
+    "overall_gap_summary": "While the candidate possesses strong foundational skills in ETL, PySpark, Kafka, and PostgreSQL, they lack the seniority level and specific domain experience (SaaS telemetry, developer tooling data) required for this role. The experience gap is significant due to the 'Senior' title and the candidate's relatively short professional tenure, suggesting a need to target mid-level roles or significantly upskill in the specific domain areas before applying."
+}
+
+Analyzing locally: Data Engineer at Zefr...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "1-2 years of experience in a technical field",
+    "candidate_experience": "2+ years",
+    "experience_gap": "Candidate meets the experience requirement, though the resume lacks explicit mention of the specific 1-2 year range, showing 2+ years which is acceptable.",
+    "missing_skills": "Snowflake, dbt, GCP (Google Cloud Platform), distributed data science inference systems",
+    "match_score": 65,
+    "apply_recommendation": "MAYBE",
+    "overall_gap_summary": "The candidate possesses strong foundational skills in Python, SQL, Airflow, and ETL pipelines but lacks specific experience with Snowflake, dbt, and GCP, which are core requirements for the role. While the candidate's experience level is sufficient, the missing cloud and transformation stack skills suggest a need for upskilling or a willingness to learn new technologies before applying."
+}
+
+Analyzing locally: Data Engineer at Avalore.ai...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "0-3 years (Junior) or 4-7 years (Journeyman) with Bachelor's Degree; requires SECRET Security Clearance, US work authorization, and specific security certifications (e.g., Security+, GSEC, CISSP).",
+    "candidate_experience": "2+ years (Sep 2024 - Present + 2019-2023 Education/Projects)",
+    "experience_gap": "Candidate meets the technical experience level for a Junior role but lacks the mandatory US work authorization and SECRET Security Clearance. The candidate is also missing all required security certifications (Security+, GSEC, CISSP, etc.) and has no mention of US-based work history or clearance eligibility.",
+    "missing_skills": "US Work Authorization, SECRET Security Clearance, Security Certifications (Security+, GSEC, CISSP, etc.), Microsoft Office proficiency (explicitly required).",
+    "match_score": 20,
+    "apply_recommendation": "NOT_RECOMMENDED",
+    "overall_gap_summary": "While the candidate possesses strong technical skills in Python, SQL, and Spark that align with the data engineering tasks, they are ineligible for the role due to the mandatory requirement for US work authorization and a SECRET Security Clearance, which the candidate does not hold. Additionally, the job description explicitly requires specific security certifications that the candidate lacks, making a successful application impossible regardless of technical proficiency."
+}
+
+Analyzing locally: Data Engineer II at The University of Texas at Austin...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "Bachelor's degree required; Preferred Master's with 7+ years in healthcare data engineering. Job requires designing architectures, Python/SQL/NoSQL, Spark, Airflow, Cloud (AWS/Azure), and ideally HIPAA/EHR domain knowledge.",
+    "candidate_experience": "2+ years (Sep 2024 - Present as Project Engineer, plus academic projects).",
+    "experience_gap": "Candidate has less than 4 years of professional experience (likely <2 years total), whereas the role prefers 7+ years in healthcare. The candidate lacks specific healthcare domain experience (EHR, HIPAA) and cloud certifications (AWS/Azure) explicitly listed as preferred.",
+    "missing_skills": "Healthcare domain expertise (HIPAA, EHR), Cloud certifications (AWS/Azure), and potentially specific cloud data warehouse experience (Redshift/Synapse) beyond local VM/Hadoop setups.",
+    "match_score": 65,
+    "apply_recommendation": "MAYBE",
+    "overall_gap_summary": "The candidate possesses strong technical fundamentals in Python, SQL, Spark, and Airflow but lacks the required 4+ years of professional experience and the preferred 7+ years in healthcare. The resume shows a VM-based environment rather than the cloud-native experience preferred, though the core engineering skills are transferable. Application is recommended only if the candidate can highlight rapid learning ability and willingness to undergo training on healthcare compliance."
+}
+
+Analyzing locally: Data Engineer, Decision Intelligence Technology at Amazon Web Services (AWS)...
+Ollama HTTP status: 200
+Ollama response keys: dict_keys(['model', 'created_at', 'response', 'done', 'done_reason', 'context', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration'])
+Raw AI response:
+{
+    "required_experience": "1+ years of data engineering experience with SQL, Python, and big data technologies (Hadoop, Spark, EMR).",
+    "candidate_experience": "2+ years",
+    "experience_gap": "The candidate meets the minimum experience requirement, though the resume indicates a recent graduation (2023) with a short stint at CDAC starting Sep 2024, suggesting the '2+ years' might be an overstatement or refers to academic projects/internships rather than full-time industry tenure.",
+    "missing_skills": "Lack of explicit mention of AWS cloud services (beyond S3), specific AWS ETL tools (Glue, EMR), and the preferred ETL tools listed (Informatica, SSIS, etc.). The resume focuses heavily on on-premise or VM-based Hadoop/Spark stacks rather than the specific AWS ecosystem required for the Kumo team.",
+    "match_score": 75,
+    "apply_recommendation": "RECOMMENDED",
+    "overall_gap_summary": "The candidate possesses strong foundational skills in Python, SQL, PySpark, and Kafka that align well with the core job requirements. However, the resume lacks specific evidence of working within the AWS ecosystem (e.g., EMR, Glue, Lambda) and preferred enterprise ETL tools, which are significant gaps for an AWS-specific role. Despite these gaps, the technical stack is highly relevant, making the candidate a strong potential fit who can likely upskill quickly on AWS-native services."
+}
+
+Done! Database successfully updated. Duplicate jobs were skipped.
+INFO:     196.1.1.9:0 - "OPTIONS /api/jobs HTTP/1.1" 200 OK
+INFO:     196.1.1.9:0 - "GET /api/jobs HTTP/1.1" 200 OK

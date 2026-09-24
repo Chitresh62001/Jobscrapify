@@ -13,7 +13,7 @@ engine = create_engine(DB_URL)
 
 # Ollama local endpoint & default model
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434/api/generate")
-OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "llama3.1")
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "qwen3.5:9b")
 
 # 1. Extract Resume Text
 def read_resume(pdf_path):
@@ -160,10 +160,11 @@ def analyze_experience_and_skill_gap_local(
 # 3. Scrape Jobs
 print("Scraping jobs...")
 jobs_df = scrape_jobs(
-    site_name=["indeed"],
+    site_name=["indeed","linkedin"],
     search_term="data engineer",
     results_wanted=15,
-    is_remote=True
+    is_remote=True,
+    linkedin_fetch_description=True
 )
 
 resume_text = read_resume("Chitresh-Chopkar-Resume.pdf")
