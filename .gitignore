@@ -41,3 +41,4 @@ Thumbs.db
 *.pdf
 
 csv_files/
+scraper_old.py
